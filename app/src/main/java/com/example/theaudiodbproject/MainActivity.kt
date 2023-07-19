@@ -7,7 +7,11 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import androidx.viewpager2.widget.ViewPager2
 import com.example.theaudiodbproject.databinding.ActivityMainBinding
+import com.example.theaudiodbproject.ui.tabbar.ViewPagerAdapter
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayoutMediator
 
 class MainActivity : AppCompatActivity() {
 
@@ -31,5 +35,16 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        val viewPager: ViewPager2 = findViewById(R.id.view_pager)
+        val tabLayout: TabLayout = findViewById(R.id.tab_layout)
+
+        viewPager.adapter = ViewPagerAdapter(this)
+        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
+            when (position) {
+                0 -> tab.text = getString(R.string.title_titles)
+                1 -> tab.text = getString(R.string.title_albums)
+            }
+        }.attach()
     }
 }
