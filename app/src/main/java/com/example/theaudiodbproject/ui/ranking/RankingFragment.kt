@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.theaudiodbproject.R
 import com.example.theaudiodbproject.databinding.FragmentRankingBinding
 
 class RankingFragment : Fragment() {
@@ -27,11 +28,6 @@ class RankingFragment : Fragment() {
 
         _binding = FragmentRankingBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
-        val textView: TextView = binding.textHome
-        rankingViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
         return root
     }
 
@@ -39,4 +35,11 @@ class RankingFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+}
+
+private fun replaceFragment(rankingFragment: Fragment){
+    val fragmentManager = supportFragmentManager
+    val fragmentTransaction = fragmentManager.beginTransaction()
+    fragmentTransaction.replace(R.id.rankingframelayout)
+    fragmentTransaction.commit()
 }

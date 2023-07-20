@@ -16,7 +16,7 @@ object NetworkManager {
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
         .build()
 
-    ///// Ranking page : trending singles & albums
+    ///// Ranking page : trendingRecyclerView singles & albums
     private val trendingApi = api.create(TrendingRouter::class.java)
 
     //Singles

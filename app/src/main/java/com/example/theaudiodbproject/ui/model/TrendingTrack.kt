@@ -17,11 +17,14 @@ data class TrendingTrack(
     val strTrackMBID: String?,
     val strArtist: String,
     val strAlbum: String,
+    val strTrack: String?, // Changed to "strTrack"
+    val strArtistThumb: String?, // Added property "strArtistThumb"
+    val strAlbumThumb: String?, // Added property "strAlbumThumb"
     val strTrackThumb: String?,
     val strCountry: String,
     val strType: String,
     val intWeek: String,
-    val dateAdded: String,
+    val dateAdded: String
 ) : Parcelable
 
 data class TrendingTrackServerResponse(
@@ -51,6 +54,12 @@ data class TrendingTrackServerResponse(
         val strArtist: String,
         @SerializedName("strAlbum")
         val strAlbum: String,
+        @SerializedName("strTrack")
+        val strTrack: String?, // Changed to "strTrack"
+        @SerializedName("strArtistThumb")
+        val strArtistThumb: String?, // Added property "strArtistThumb"
+        @SerializedName("strAlbumThumb")
+        val strAlbumThumb: String?, // Added property "strAlbumThumb"
         @SerializedName("strTrackThumb")
         val strTrackThumb: String?,
         @SerializedName("strCountry")
@@ -75,11 +84,14 @@ data class TrendingTrackServerResponse(
             strTrackMBID = resp.strTrackMBID,
             strArtist = resp.strArtist,
             strAlbum = resp.strAlbum,
+            strTrack = resp.strTrack,
+            strArtistThumb = resp.strArtistThumb,
+            strAlbumThumb = resp.strAlbumThumb,
             strTrackThumb = resp.strTrackThumb,
             strCountry = resp.strCountry,
             strType = resp.strType,
             intWeek = resp.intWeek,
             dateAdded = resp.dateAdded
         )
-    } ?: throw Exception("Unable to parse the trending track")
+    } ?: throw Exception("Unable to parse the trendingRecyclerView track")
 }

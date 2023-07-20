@@ -81,5 +81,5 @@ data class TrackServerResponse(
             intWeek = resp.intWeek,
             dateAdded = resp.dateAdded
         )
-    } ?: throw Exception("Unable to parse the trending track")
+    } ?: throw Exception("Unable to parse the trendingRecyclerView track")
 }

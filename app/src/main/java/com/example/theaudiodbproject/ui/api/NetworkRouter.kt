@@ -11,10 +11,10 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface TrendingRouter {
-    @GET("trending.php?country=us&type=itunes&format=singles")
+    @GET("trendingRecyclerView.php?country=us&type=itunes&format=singles")
     fun getTrendingTracks(): Deferred<TrendingTrackList>
 
-    @GET("trending.php?country=us&type=itunes&format=albums")
+    @GET("trendingRecyclerView.php?country=us&type=itunes&format=albums")
     fun getTrendingAlbums(): Deferred<TrendingAlbumList>
 
 }

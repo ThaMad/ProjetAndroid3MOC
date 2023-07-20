@@ -81,5 +81,5 @@ data class TrendingAlbumServerResponse(
             intWeek = resp.intWeek,
             dateAdded = resp.dateAdded
         )
-    } ?: throw Exception("Unable to parse the trending album")
+    } ?: throw Exception("Unable to parse the trendingRecyclerView album")
 }
