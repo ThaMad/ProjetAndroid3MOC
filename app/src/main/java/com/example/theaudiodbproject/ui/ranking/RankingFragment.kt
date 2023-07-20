@@ -31,15 +31,15 @@ class RankingFragment : Fragment() {
         return root
     }
 
+    private fun replaceFragment(rankingFragment: Fragment){
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.rankingframelayout)
+        fragmentTransaction.commit()
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-}
-
-private fun replaceFragment(rankingFragment: Fragment){
-    val fragmentManager = supportFragmentManager
-    val fragmentTransaction = fragmentManager.beginTransaction()
-    fragmentTransaction.replace(R.id.rankingframelayout)
-    fragmentTransaction.commit()
 }

@@ -7,24 +7,24 @@ import java.util.Locale
 
 @Parcelize
 data class TrendingTrack(
-    val idTrend: String,
-    val intChartPlace: String,
-    val idArtist: String,
-    val idAlbum: String,
+    val idTrend: String?,
+    val intChartPlace: String?,
+    val idArtist: String?,
+    val idAlbum: String?,
     val idTrack: String?,
-    val strArtistMBID: String,
-    val strAlbumMBID: String,
+    val strArtistMBID: String?,
+    val strAlbumMBID: String?,
     val strTrackMBID: String?,
-    val strArtist: String,
-    val strAlbum: String,
+    val strArtist: String?,
+    val strAlbum: String?,
     val strTrack: String?, // Changed to "strTrack"
     val strArtistThumb: String?, // Added property "strArtistThumb"
     val strAlbumThumb: String?, // Added property "strAlbumThumb"
     val strTrackThumb: String?,
-    val strCountry: String,
-    val strType: String,
-    val intWeek: String,
-    val dateAdded: String
+    val strCountry: String?,
+    val strType: String?,
+    val intWeek: String?,
+    val dateAdded: String?
 ) : Parcelable
 
 data class TrendingTrackServerResponse(
@@ -35,25 +35,25 @@ data class TrendingTrackServerResponse(
 ) {
     data class Response(
         @SerializedName("idTrend")
-        val idTrend: String,
+        val idTrend: String?,
         @SerializedName("intChartPlace")
-        val intChartPlace: String,
+        val intChartPlace: String?,
         @SerializedName("idArtist")
-        val idArtist: String,
+        val idArtist: String?,
         @SerializedName("idAlbum")
-        val idAlbum: String,
+        val idAlbum: String?,
         @SerializedName("idTrack")
         val idTrack: String?,
         @SerializedName("strArtistMBID")
-        val strArtistMBID: String,
+        val strArtistMBID: String?,
         @SerializedName("strAlbumMBID")
-        val strAlbumMBID: String,
+        val strAlbumMBID: String?,
         @SerializedName("strTrackMBID")
         val strTrackMBID: String?,
         @SerializedName("strArtist")
-        val strArtist: String,
+        val strArtist: String?,
         @SerializedName("strAlbum")
-        val strAlbum: String,
+        val strAlbum: String?,
         @SerializedName("strTrack")
         val strTrack: String?, // Changed to "strTrack"
         @SerializedName("strArtistThumb")
@@ -63,13 +63,13 @@ data class TrendingTrackServerResponse(
         @SerializedName("strTrackThumb")
         val strTrackThumb: String?,
         @SerializedName("strCountry")
-        val strCountry: String,
+        val strCountry: String?,
         @SerializedName("strType")
-        val strType: String,
+        val strType: String?,
         @SerializedName("intWeek")
-        val intWeek: String,
+        val intWeek: String?,
         @SerializedName("dateAdded")
-        val dateAdded: String
+        val dateAdded: String?
     )
 
     fun toTrendingTrack(): TrendingTrack = response?.let { resp ->

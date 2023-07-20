@@ -46,5 +46,7 @@ class MainActivity : AppCompatActivity() {
                 1 -> tab.text = getString(R.string.title_albums)
             }
         }.attach()
+
+
     }
 }

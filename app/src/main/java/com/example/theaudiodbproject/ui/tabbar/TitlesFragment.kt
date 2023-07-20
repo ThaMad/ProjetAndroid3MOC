@@ -5,13 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.theaudiodbproject.R
-import com.example.theaudiodbproject.ui.model.TrackList
+import com.example.theaudiodbproject.ui.api.NetworkManager
 import com.example.theaudiodbproject.ui.model.TrendingTrack
 import com.example.theaudiodbproject.ui.model.TrendingTrackList
 import com.example.theaudiodbproject.ui.tabbar.Adapter.myTrendingTracksAdapter
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.lang.reflect.Array
 
 // TODO: Rename parameter arguments, choose names that match
@@ -24,23 +28,13 @@ private const val ARG_PARAM2 = "param2"
  * Use the [TitlesFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class TitlesFragment : Fragment() {
+class TitlesFragment : Fragment(),myTrendingTracksAdapter.OnTrendingTrackListClickListener{
 
     private lateinit var adapter: myTrendingTracksAdapter
     private lateinit var recyclerView: RecyclerView
     private lateinit var trendingTrackList: TrendingTrackList
 
-    private lateinit var thumbnail : Array<String>
-    private lateinit var trending_title : Array<String>
-    private lateinit var artist : Array<String>
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,15 +44,6 @@ class TitlesFragment : Fragment() {
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment TitlesFragment.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
             TitlesFragment().apply {
@@ -69,19 +54,46 @@ class TitlesFragment : Fragment() {
             }
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val data =
-            mutableListOf(
-                "h"
-            )
 
+        trendingTrackList = TrendingTrackList(ArrayList()) // Initialize an empty TrendingTrackList
 
         val layoutManager = LinearLayoutManager(context)
         recyclerView = view.findViewById(R.id.trendingRecyclerView)
         recyclerView.layoutManager = layoutManager
         recyclerView.setHasFixedSize(true)
-        adapter = myTrendingTracksAdapter(trendingTrackList)
+        adapter = myTrendingTracksAdapter(trendingTrackList, this)
         recyclerView.adapter = adapter
+
+        // Call the API to get trending tracks and update the list
+        loadTrendingTracks()
     }
-}
+
+    private fun loadTrendingTracks() {
+        GlobalScope.launch(Dispatchers.Main) {
+            try {
+                // Call the API function to get trending tracks
+                val response = NetworkManager.getTrendingTracks()
+                // If the response is successful and contains data, update the list
+                response.trendingTrack?.let {
+                    trendingTrackList.trendingTrack?.addAll(it)
+                    adapter.notifyDataSetChanged()
+                }
+            } catch (e: Exception) {
+                // Handle the error, such as showing a toast with the error message
+                Toast.makeText(context, "Error fetching trending tracks: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    override fun onTrendingTrackClicked(trendingTrack: TrendingTrack) {
+        // Handle the click event for a trending track item here
+        // You can implement your logic when a track is clicked
+    }
+
+
+    }
+
+
