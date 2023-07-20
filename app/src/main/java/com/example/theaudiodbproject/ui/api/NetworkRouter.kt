@@ -10,7 +10,6 @@ import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-
 interface TrendingRouter {
     @GET("trending.php?country=us&type=itunes&format=singles")
     fun getTrendingTracks(): Deferred<TrendingTrackList>
