@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+                <TextView
+                    android:id="@+id/artistDetailAlbumSection"
+                    android:layout_width="138dp"
+                    android:layout_height="43dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="17dp"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/artistDetailArtistDesc"
+                    tools:text="Album(5)" />
+
+                <FrameLayout
+                    android:id="@+id/artistDetailFrameLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="300dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:id="@+id/artistDetailImage"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="centerCrop"
+                            tools:src="@drawable/ic_home_black_24dp" />
+
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+
+                                <ImageView
+                                    android:id="@+id/returnButton"
+                                    android:layout_width="45dp"
+                                    android:layout_height="45dp"
+                                    android:layout_marginTop="30dp"
+                                    android:src="@drawable/baseline_keyboard_arrow_left_24"
+                                    app:layout_constraintLeft_toLeftOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:tint="@color/white" />
+
+                                <TextView
+                                    android:id="@+id/artistDetailArtistName"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="20dp"
+                                    android:layout_marginBottom="10dp"
+                                    android:textColor="@color/white"
+                                    android:textSize="20sp"
+                                    app:layout_constraintBottom_toTopOf="@+id/artistDetailCountryStyle"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    tools:text="The Weeknd" />
+
+                                <TextView
+                                    android:id="@+id/artistDetailCountryStyle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="20dp"
+                                    android:layout_marginBottom="20dp"
+                                    android:textSize="12sp"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    tools:text="USA, R'n'B" />
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/artistDetailArtistDesc"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/artistDetailFrameLayout"
+                    tools:text="The Weeknd Concert Soooooooooooooooonnnnnnnnn The Weeknd Concert Soooooooooooooooonnnnnnnnn The Weeknd Concert Soooooooooooooooonnnnnnnnn The Weeknd Concert Soooooooooooooooonnnnnnnnn The Weeknd Concert Soooooooooooooooonnnnnnnnn The Weeknd Concert Soooooooooooooooonnnnnnnnn The Weeknd Concert Soooooooooooooooonnnnnnnnn" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/artistDetailAlbumRecycleView"
+                    android:layout_width="370dp"
+                    android:layout_height="208dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="33dp"
+                    android:layout_marginEnd="20dp"
+                    android:paddingBottom="30dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/artistDetailAlbumSection" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

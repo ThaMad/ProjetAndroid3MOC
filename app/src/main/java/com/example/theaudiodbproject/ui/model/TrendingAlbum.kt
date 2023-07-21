@@ -15,7 +15,7 @@ data class TrendingAlbum(
     val strTrackMBID: String?,
     val strArtist: String,
     val strAlbum: String,
-    val strTrackThumb: String?,
+    val strAlbumThumb: String?,
     val strCountry: String,
     val strType: String,
     val intWeek: String,
@@ -50,7 +50,7 @@ data class TrendingAlbumServerResponse(
         @SerializedName("strAlbum")
         val strAlbum: String,
         @SerializedName("strTrackThumb")
-        val strTrackThumb: String?,
+        val strAlbumThumb: String?,
         @SerializedName("strCountry")
         val strCountry: String,
         @SerializedName("strType")
@@ -74,7 +74,7 @@ data class TrendingAlbumServerResponse(
             strTrackMBID = resp.strTrackMBID,
             strArtist = resp.strArtist,
             strAlbum = resp.strAlbum,
-            strTrackThumb = resp.strTrackThumb,
+            strAlbumThumb = resp.strAlbumThumb,
             strCountry = resp.strCountry,
             strType = resp.strType,
             intWeek = resp.intWeek,

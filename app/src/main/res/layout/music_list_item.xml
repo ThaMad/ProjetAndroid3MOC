@@ -13,7 +13,7 @@
         android:id="@+id/title_thumbnail"
         android:layout_width="49dp"
         android:layout_height="48dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="20dp"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:src="@drawable/baseline_search_24"
