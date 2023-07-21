@@ -4,7 +4,6 @@ import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
-@Parcelize
 data class TrendingAlbum(
     val idTrend: String,
     val intChartPlace: String,
@@ -21,7 +20,7 @@ data class TrendingAlbum(
     val strType: String,
     val intWeek: String,
     val dateAdded: String
-) : Parcelable
+)
 
 data class TrendingAlbumServerResponse(
     @SerializedName("error")
