@@ -1,5 +1,11 @@
 package com.example.theaudiodbproject.ui.model
 
 data class TrendingAlbumList(
-    val trendingAlbum: List<TrendingAlbum>?
-)
+    val trendingAlbum: MutableList<TrendingAlbum>?
+) {
+
+    operator fun get(position: Int): TrendingAlbum {
+        return this[position];
+
+    }
+}

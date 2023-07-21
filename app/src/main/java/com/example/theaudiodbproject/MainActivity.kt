@@ -36,17 +36,6 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        val viewPager: ViewPager2 = findViewById(R.id.view_pager)
-        val tabLayout: TabLayout = findViewById(R.id.tab_layout)
-
-        viewPager.adapter = ViewPagerAdapter(this)
-        TabLayoutMediator(tabLayout, viewPager) { tab, position ->
-            when (position) {
-                0 -> tab.text = getString(R.string.title_titles)
-                1 -> tab.text = getString(R.string.title_albums)
-            }
-        }.attach()
-
 
     }
 }

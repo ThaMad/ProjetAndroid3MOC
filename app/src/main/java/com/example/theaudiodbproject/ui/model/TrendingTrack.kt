@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 import java.util.Locale
 
-@Parcelize
+
 data class TrendingTrack(
     val idTrend: String?,
     val intChartPlace: String?,
@@ -24,8 +24,8 @@ data class TrendingTrack(
     val strCountry: String?,
     val strType: String?,
     val intWeek: String?,
-    val dateAdded: String?
-) : Parcelable
+    val dateAdded: String?,
+)
 
 data class TrendingTrackServerResponse(
     @SerializedName("error")

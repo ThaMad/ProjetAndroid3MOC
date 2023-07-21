@@ -10,12 +10,18 @@ import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface TrendingRouter {
-    @GET("trendingRecyclerView.php?country=us&type=itunes&format=singles")
-    fun getTrendingTracks(): Deferred<TrendingTrackList>
 
-    @GET("trendingRecyclerView.php?country=us&type=itunes&format=albums")
-    fun getTrendingAlbums(): Deferred<TrendingAlbumList>
+interface TrendingRouter {
+    @GET("trending.php")
+    fun getTrendingTracks(@Query("country") country: String = "us",
+                          @Query("type") type: String = "itunes",
+                          @Query("format") format: String = "singles",)
+    : Deferred<TrendingTrackList>
+
+    @GET("trending.php")
+    fun getTrendingAlbums(@Query("country") country: String = "us",
+                          @Query("type") type: String = "itunes",
+                          @Query("format") format: String = "albums",): Deferred<TrendingAlbumList>
 
 }
 
