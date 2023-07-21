@@ -1,10 +1,13 @@
 package com.example.theaudiodbproject.ui.api
 import AlbumServerResponse
 import ArtistServerResponse
+import android.content.ContentValues.TAG
+import android.util.Log
 import com.example.theaudiodbproject.ui.model.TrackList
 import com.example.theaudiodbproject.ui.model.TrendingAlbumList
 import com.example.theaudiodbproject.ui.model.TrendingTrackList
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import kotlinx.coroutines.Deferred
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -16,17 +19,18 @@ object NetworkManager {
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
         .build()
 
-    ///// Ranking page : trending singles & albums
+    ///// Ranking page : trendingRecyclerView singles & albums
     private val trendingApi = api.create(TrendingRouter::class.java)
 
     //Singles
-    suspend fun getTrendingTracks(): TrendingTrackList {
-        return trendingApi.getTrendingTracks().await();
+    suspend fun getTrendingTracks(): Deferred<TrendingTrackList> {
+        Log.d(TAG, "getTrendingTracks: ça passe ici")
+        return trendingApi.getTrendingTracks();
     }
 
     //Albums
-    suspend fun getTrendingAlbums(): TrendingAlbumList {
-        return trendingApi.getTrendingAlbums().await();
+    suspend fun getTrendingAlbums(): Deferred<TrendingAlbumList> {
+        return trendingApi.getTrendingAlbums();
     }
 
     ////// Artist
