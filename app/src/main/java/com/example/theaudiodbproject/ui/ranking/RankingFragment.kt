@@ -9,7 +9,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.example.theaudiodbproject.R
 import com.example.theaudiodbproject.databinding.FragmentRankingBinding
-import com.example.theaudiodbproject.ui.tabbar.TitlesFragment
 import com.example.theaudiodbproject.ui.tabbar.ViewPagerAdapter
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator

@@ -12,6 +12,7 @@ import com.example.theaudiodbproject.ui.model.TrendingTrack
 
 class MyTrendingTracksAdapter(val callback: OnTrendingTrackListClickListener) : RecyclerView.Adapter<MyTrendingTracksAdapter.TrendingTrackListViewHolder>() {
 
+
     private val data = mutableListOf<TrendingTrack>()
 
     fun setData(trendingTrack: List<TrendingTrack>) {

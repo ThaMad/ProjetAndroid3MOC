@@ -8,11 +8,20 @@ import com.bumptech.glide.Glide
 import com.example.theaudiodbproject.R
 import com.example.theaudiodbproject.ui.model.TrendingAlbum
 import com.example.theaudiodbproject.ui.model.TrendingAlbumList
+import com.example.theaudiodbproject.ui.model.TrendingTrack
 
-class myTrendingAlbumsAdapter(
-    val trendingAlbumList: TrendingAlbumList,
+class MyTrendingAlbumsAdapter(
     val callback: OnTrendingAlbumListClickListener
-) : RecyclerView.Adapter<myTrendingAlbumsAdapter.TrendingAlbumListViewHolder>() {
+) : RecyclerView.Adapter<MyTrendingAlbumsAdapter.TrendingAlbumListViewHolder>() {
+
+    private val data = mutableListOf<TrendingAlbum>()
+
+    fun setData(trendingAlbum: List<TrendingAlbum>) {
+        data.clear()
+        data.addAll(trendingAlbum)
+        notifyDataSetChanged()
+    }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TrendingAlbumListViewHolder {
         return TrendingAlbumListViewHolder(
@@ -22,15 +31,16 @@ class myTrendingAlbumsAdapter(
     }
 
     override fun getItemCount(): Int {
-        return trendingAlbumList.trendingAlbum?.size ?: 0
+        return data.size
     }
 
     override fun onBindViewHolder(holder: TrendingAlbumListViewHolder, position: Int) {
-        val trendingAlbum = trendingAlbumList[position]
+        val trendingAlbum = data[position]
         holder.update(trendingAlbum)
         //holder.thumbnail.setImageResource(trendingAlbum.strTrackThumb)
         holder.artist.text = trendingAlbum.strArtist
         holder.album.text = trendingAlbum.strAlbum
+        holder.rankInCharts.text = trendingAlbum.intChartPlace
         holder.itemView.setOnClickListener {
             callback.onTrendingAlbumClicked(trendingAlbum)
         }
@@ -41,11 +51,13 @@ class myTrendingAlbumsAdapter(
         val thumbnail: ImageView = v.findViewById(R.id.album_thumbnail)
         val album: TextView = v.findViewById(R.id.albumName)
         val artist: TextView = v.findViewById(R.id.trendingalbumartist)
+        val rankInCharts: TextView = v.findViewById((R.id.rankinchartsalbum))
 
         fun update(trendingAlbum: TrendingAlbum) {
-            Glide.with(itemView).load(trendingAlbum.strTrackThumb).into(thumbnail)
+            Glide.with(itemView).load(trendingAlbum.strAlbumThumb).into(thumbnail)
             album.text = trendingAlbum.strAlbum
             artist.text = trendingAlbum.strArtist
+            rankInCharts.text = trendingAlbum.intChartPlace
         }
 
     }

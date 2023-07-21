@@ -13,7 +13,7 @@
         android:id="@+id/album_thumbnail"
         android:layout_width="49dp"
         android:layout_height="48dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="20dp"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
         android:src="@drawable/baseline_search_24"
@@ -48,7 +48,7 @@
         app:layout_constraintTop_toBottomOf="@id/album_thumbnail" />
 
     <TextView
-        android:id="@+id/trendingtrackartist"
+        android:id="@+id/trendingalbumartist"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"

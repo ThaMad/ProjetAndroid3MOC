@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.theaudiodbproject.R
 import com.example.theaudiodbproject.ui.api.NetworkManager
+import com.example.theaudiodbproject.ui.details.ArtistDetailsFragment
 import com.example.theaudiodbproject.ui.model.TrendingTrack
 import com.example.theaudiodbproject.ui.model.TrendingTrackList
 import com.example.theaudiodbproject.ui.tabbar.Adapter.MyTrendingTracksAdapter
@@ -31,7 +32,17 @@ class TitlesFragment : Fragment() {
 
     private val titleTrendingTrackAdapter = MyTrendingTracksAdapter(object : MyTrendingTracksAdapter.OnTrendingTrackListClickListener {
         override fun onTrendingTrackClicked(trendingTrack: TrendingTrack) {
-            TODO("Not yet implemented")
+            val artistDetailsFragment = trendingTrack.idArtist?.let {
+                ArtistDetailsFragment.newInstance(
+                    it
+                )
+            }
+            if (artistDetailsFragment != null) {
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.container, artistDetailsFragment)
+                    .addToBackStack(null)
+                    .commit()
+            }
         }
     })
 
@@ -50,10 +61,11 @@ class TitlesFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = titleTrendingTrackAdapter
 
+
         GlobalScope.launch(Dispatchers.Main) {
             try {
                 val response = NetworkManager.getTrendingTracks().await()
-                titleTrendingTrackAdapter.setData(response.trending)
+                titleTrendingTrackAdapter.setData(response.trending.sortedBy { it.intChartPlace?.toInt() })
             } catch (e: Exception) {
                 // Gérer les erreurs ici, par exemple afficher un message d'erreur.
                 Log.e("Erreur_API", "Erreur lors de la récupération des classements : ${e.message}")
